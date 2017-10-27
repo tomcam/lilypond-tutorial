@@ -27,6 +27,7 @@ displaying the lyrics.
 bulletChar = \markup { \char ##x2022 }
 bullet = \markup { \char ##x2022 }
 
+
 #(define-markup-command (headerOne layout props text) 
 	(markup?)
  	"Create a level 1 header"
@@ -35,9 +36,9 @@ bullet = \markup { \char ##x2022 }
 			\markup {
 				\fontsize #6
 				\line \bold { #text }
-				\vspace #2
+				\vspace #3
 			}
-  	#}))
+  		#}))
 
 #(define-markup-command (headerTwo layout props text) 
 	(markup?)
@@ -45,12 +46,39 @@ bullet = \markup { \char ##x2022 }
  	(interpret-markup layout props
 		#{
 			\markup {
-				\vspace #1
 				\fontsize #3
 				\line \bold { #text }
-				\line { "" }
+				\vspace #3
 			}
   	#}))
+
+#(define-markup-list-command (bulletParagraph layout props text) 
+	(markup-list?)
+	"Paragraph starting with a bullet-indicates action"
+ 	(interpret-markup-list layout props
+		#{
+			\markuplist {
+				\concat {
+					\bulletChar \hspace #1
+					\wordwrap { #text }
+				}
+				\vspace #1
+			}
+  		#}))
+
+
+#(define-markup-list-command (normalParagraph layout props text) 
+	(markup-list?)
+	"Normal explanatory paragraph"
+ 	(interpret-markup-list layout props
+		#{
+			\markuplist {
+				\wordwrap { #text }
+				\vspace #1
+			}
+  		#}))
+
+
 
 
 
