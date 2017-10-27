@@ -25,7 +25,6 @@ displaying the lyrics.
 
 % Bullet character
 bulletChar = \markup { \char ##x2022 }
-bullet = \markup { \char ##x2022 }
 
 
 #(define-markup-command (headerOne layout props text) 
@@ -35,7 +34,7 @@ bullet = \markup { \char ##x2022 }
 		#{
 			\markup {
 				\fontsize #6
-				\line \bold { #text }
+				\line \bold \sans { #text }
 				\vspace #3
 			}
   		#}))
@@ -46,11 +45,12 @@ bullet = \markup { \char ##x2022 }
  	(interpret-markup layout props
 		#{
 			\markup {
+				\vspace #2
 				\fontsize #3
-				\line \bold { #text }
-				\vspace #3
+				\line \bold \sans { #text }
 			}
   	#}))
+
 
 #(define-markup-list-command (bulletParagraph layout props text) 
 	(markup-list?)
@@ -59,10 +59,10 @@ bullet = \markup { \char ##x2022 }
 		#{
 			\markuplist {
 				\concat {
+					\vspace #1.5
 					\bulletChar \hspace #1
 					\wordwrap { #text }
 				}
-				\vspace #1
 			}
   		#}))
 
@@ -73,8 +73,10 @@ bullet = \markup { \char ##x2022 }
  	(interpret-markup-list layout props
 		#{
 			\markuplist {
-				\wordwrap { #text }
-				\vspace #1
+				\concat {
+					\vspace #1.5
+					\wordwrap { #text }
+				}
 			}
   		#}))
 
