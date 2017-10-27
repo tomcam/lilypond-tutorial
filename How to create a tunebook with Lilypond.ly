@@ -9,7 +9,7 @@
    *********************************** 
 %}
 
-\markup \headerOne  { "Writing the Score" }
+\markup	\headerOne  { "Writing the Score" }
 
 
 \markup {
