@@ -23,9 +23,41 @@ displaying the lyrics.
 
 %}
 
+% Supposed to enable clickable URLS, according to:
+% http://lilypond.org/doc/v2.18/Documentation/usage/configuring-the-system-for-point-and-click
+% But supposedly this can cause security issues? Heh? Reread that section
+\pointAndClickOn
+
 % Bullet character
 bulletChar = \markup { \char ##x2022 }
 
+%{ ***********************************
+   * 
+   * EXPERIMENTAL PARAGRAPH STYLES 
+   * 
+   *********************************** 
+%}
+
+#(define-markup-list-command (bp layout props text) 
+	(markup-list?)
+	"Paragraph starting with a bullet-indicates action"
+ 	(interpret-markup-list layout props
+		#{
+			\markuplist {
+				\concat {
+					\wordwrap { #text }
+				}
+			}
+  		#}))
+
+
+%{ ***********************************
+   * 
+   * HEADER HIERARCHY 
+   * corresponds to HTML headers
+   * 
+   *********************************** 
+%}
 
 #(define-markup-command (headerOne layout props text) 
 	(markup?)
@@ -51,7 +83,34 @@ bulletChar = \markup { \char ##x2022 }
 			}
   	#}))
 
+#(define-markup-command (headerThree layout props text) 
+	(markup?)
+ 	"Create a level 3 header"
+ 	(interpret-markup layout props
+		#{
+			\markup {
+				\vspace #2
+				\fontsize #3
+				\line \sans { #text }
+			}
+  	#}))
 
+
+
+%{ ***********************************
+   * 
+   * PARAGRAPH STYLES 
+   * 
+   *********************************** 
+%}
+
+
+
+%{ ***********************************
+   * bulletParagraph
+   * Resembles HTML unordered list item
+   *********************************** 
+%}
 #(define-markup-list-command (bulletParagraph layout props text) 
 	(markup-list?)
 	"Paragraph starting with a bullet-indicates action"
@@ -67,6 +126,11 @@ bulletChar = \markup { \char ##x2022 }
   		#}))
 
 
+%{ ***********************************
+   * normalParagraph
+   * Resembles HTML p style
+   *********************************** 
+%}
 #(define-markup-list-command (normalParagraph layout props text) 
 	(markup-list?)
 	"Normal explanatory paragraph"
@@ -96,8 +160,8 @@ bulletChar = \markup { \char ##x2022 }
 \paper {
   % This has weird effects I need to understand better:
   % print-all-headers = ##t
-  paper-height = 9\in
-  paper-width = 6\in
+  paper-height = 11\in
+  paper-width = 8.5\in
   % Without this, first line of music is indented
   indent = #0
 
@@ -105,13 +169,12 @@ bulletChar = \markup { \char ##x2022 }
   % Range section and the score.
   % It's a sort of flex system:
   % http://lilypond.org/doc/v2.19/Documentation/notation/flexible-vertical-spacing-paper-variables
-%{
+
   system-system-spacing =
     #'((basic-distance . 5)    
        (minimum-distance . 0)
        (padding . -5)          
        (stretchability . 20)) 
-%}
 
   ragged-last-bottom = ##f
   ragged-bottom = ##f
