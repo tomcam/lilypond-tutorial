@@ -37,24 +37,6 @@ A See more reference at the end of a section should use this form:
 	#(include-special-characters)
 }
 
-\markup \headerOne { "TODO:" }
-
-% \markup \bulletParagraph { "" }
-
-\markup \bulletParagraph { Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms }
-\markup \bulletParagraph { "Lyrics" }
-\markup \bulletParagraph { "<< and >>" }
-\markup \bulletParagraph { "Standardize on a way to express URLs, but at any rate DO NOT include the version number. The Lilypond site resolves it back in if you paste the address without it." }
-\markup \bulletParagraph { "Figure out why this doesn't word wrap:" }
-\markup \normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
-
-\markup \bulletParagraph { "How can I make columns of fixed width in text markup? I would like column 2 to start 50% in for all my 2-column examples." }
-
-\markup \bulletParagraph { "Figure out how to do version declarations as macros so updating the markup only needs to be done once." }
-
-
-
-
 
 \markup \headerOne  { "Writing tunebooks with Lilypond" }
 
@@ -68,8 +50,6 @@ A See more reference at the end of a section should use this form:
 		}
 	}
 }
-
-
 
 
 
@@ -158,6 +138,14 @@ A See more reference at the end of a section should use this form:
 		\line { " " }
 		\line { " " }
 		\line { " " }
+		\score {
+			{ 
+				\clef bass
+				{
+					c d e f 
+				}
+			}
+		}
 	}	
 }
 
@@ -1413,6 +1401,23 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 \markup \normalParagraph { 
 	Concluding graf
 }
+
+
+
+\markup \headerOne { "TODO:" }
+
+% \markup \bulletParagraph { "" }
+
+\markup \bulletParagraph { Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms }
+\markup \bulletParagraph { "Lyrics" }
+\markup \bulletParagraph { "<< and >>" }
+\markup \bulletParagraph { "Standardize on a way to express URLs, but at any rate DO NOT include the version number. The Lilypond site resolves it back in if you paste the address without it." }
+\markup \bulletParagraph { "Figure out why this doesn't word wrap:" }
+\markup \normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
+
+\markup \bulletParagraph { "How can I make columns of fixed width in text markup? I would like column 2 to start 50% in for all my 2-column examples." }
+
+\markup \bulletParagraph { "Figure out how to do version declarations as macros so updating the markup only needs to be done once." }
 
 
 
