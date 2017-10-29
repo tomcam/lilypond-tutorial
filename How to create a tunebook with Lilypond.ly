@@ -1,21 +1,40 @@
 \include "settings.ly"
 
+
+
 %{ ***********************************
-   * CONVENTIONS
+   CONVENTIONS
 
-A See more reference at the end of a section should use this form:
-\markup \normalParagraph { 
-	See http://lilypond.org/doc/Documentation/notation/writing-pitches for more details.
-}
+  * See more reference at the end of a section should use this form.
+    NOTE ABSENCE OF VERSION NUMBER IN URL. The version gets resolved in
+     at lilypond.org when you paste in an address using this form. Slick!
 
+	\markup \normalParagraph { 
+		See http://lilypond.org/doc/Documentation/notation/writing-pitches for more details.
+	}
 
-   * INVESTIGATE
-   * 
+   TODO
+   * Lyrics
+   * << and >>
+   * Standardize a way to express RULS
+   * Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms 
+
+   INVESTIGATE
+   
    * Why does the # in this URL cause an error on compilation?
 
 	\markup \normalParagraph { 
 	For more, see http://lilypond.org/doc/v2.18/Documentation/notation/	writing-rhythms#durations
 	}
+
+   * Figure out why this doesn't word wrap:
+	\markup \normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
+
+    * How can I make columns of fixed width in text markup? 
+      I would like column 2 to start 50% in for all my 2-column examples." }
+
+    * Figure out how to do version declarations as macros.
+      Updating the markup would only need to be done once
 
    *********************************** 
 %}
@@ -552,8 +571,24 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 \markup \headerTwo { "Accidentals: adding sharp and flat signs" }
 
 \markup \normalParagraph { 
-			Append \typewriter { "is" } to a note name give it a sharp sign, and  \typewriter { "es" } to make it flat. 
-			In the example below, to make the F an F sharp use the notation \typewriter { "fis" }, and to make the E an E flat use \typewriter { "ees" }. 
+	Form accidentals by appending them directly to the note letter.
+	Make sure there is no space after the note letter.
+}
+
+\markup \headerThree { Append \typewriter { "es" } to make a note flat }
+
+\markup \normalParagraph { 
+	Append \typewriter { "es" } to a note name to give it a flat sign. 
+}
+
+\markup \headerThree { Append \typewriter { "is" } to make a note sharp }
+
+\markup \normalParagraph { 
+	Append \typewriter { "is" } to a note name to give it a sharp sign.
+}
+
+\markup \normalParagraph { 
+		In the example below, to make the F an F sharp use the notation \typewriter { "fis" }, and to make the E an E flat use \typewriter { "ees" }. 
 }
 
 \markup {
@@ -1316,7 +1351,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 \markup \headerThree { "Ending with a repeat" }
 
 \markup \normalParagraph { 
-	Use \typewriter { "\\bar \"|.\" " } to repeat a phrase.
+	Use \typewriter { "\\bar \":|]\" " } to repeat a phrase.
 }
 
 \markup {
@@ -1401,28 +1436,6 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 \markup \normalParagraph { 
 	Concluding graf
 }
-
-
-
-\markup \headerOne { "TODO:" }
-
-% \markup \bulletParagraph { "" }
-
-\markup \bulletParagraph { Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms }
-\markup \bulletParagraph { "Lyrics" }
-\markup \bulletParagraph { "<< and >>" }
-\markup \bulletParagraph { "Standardize on a way to express URLs, but at any rate DO NOT include the version number. The Lilypond site resolves it back in if you paste the address without it." }
-\markup \bulletParagraph { "Figure out why this doesn't word wrap:" }
-\markup \normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
-
-\markup \bulletParagraph { "How can I make columns of fixed width in text markup? I would like column 2 to start 50% in for all my 2-column examples." }
-
-\markup \bulletParagraph { "Figure out how to do version declarations as macros so updating the markup only needs to be done once." }
-
-
-
-
-
 
 
 %{ ***********************************
