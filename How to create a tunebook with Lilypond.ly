@@ -1,5 +1,7 @@
-\include "settings.ly"
+\include "styles.ly"
+\include "print.ly"
 
+versionNumber = "\\version \"2.19.54\" "  
 
 
 %{ ***********************************
@@ -48,14 +50,6 @@
    *********************************** 
 %}
 
-\paper {
-	% Allows for inclusion of things like &emsp;
-	% See 
-	%    http://lilypond.org/doc/Documentation/notation/special-characters#ascii-aliases
-	%    http://lilypond.org/doc/Documentation/notation/list-of-special-characters
-	#(include-special-characters)
-}
-
 
 \markup \headerOne  { "Writing tunebooks with Lilypond" }
 
@@ -93,7 +87,7 @@
 		\typewriter {
 			"\\version \"2.19.54\"" 
          	"{"
-         	"     c &ensp; d &ensp; e &ensp; f"
+         	"     c d e f"
          	"}"
 		}
 		\headerTwo { "Save your file" } 
@@ -109,7 +103,7 @@
 	\column { 		 
 	\vspace #1
 		\typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
          	"{"
             "    c d e f "
  			"}"
@@ -144,7 +138,7 @@
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\clef bass"
 			"    {"
@@ -197,7 +191,7 @@
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c' {"
 			"         c d e f"
@@ -236,7 +230,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'' {"
 			"         c d e f"
@@ -270,7 +264,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c, {"
 			"         c d e f"
@@ -300,7 +294,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c {"
 			"         c d e f"
@@ -365,7 +359,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"% Have someone double-check this passage"
 			"{"
 			"    \\relative c' {"
@@ -379,7 +373,6 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 		\line { " " }
 		\line { " " }
 		\score {
-			\version "2.19.54"
 			{ 
 				\relative c' { 
 					c d e f 
@@ -402,7 +395,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			\line { "{% Have someone double-check this passage" }
 			\line { "I've been at this 24 hours." }
 			\line { "I'm not thinking straight" }
@@ -419,7 +412,6 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 		\line { " " }
 		\line { " " }
 		\score {
-			\version "2.19.54"
 			{ 
 				\relative c' { 
 					c d e f 
@@ -452,7 +444,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c' {"
 			"         c d e f"
@@ -495,7 +487,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c' {"
 			"    \\time 3/4"
@@ -530,7 +522,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c' {"
 			"    \\time 3/4"
@@ -595,7 +587,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
@@ -641,7 +633,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative g'"
 			"    \\key g \\major"
@@ -680,7 +672,7 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative g'"
 			"    \\key g \\major"
@@ -744,7 +736,7 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    \\time 3/4"
@@ -780,7 +772,7 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    \\time 3/4"
@@ -805,7 +797,9 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 	}	
 }
 
-
+\markup \normalParagraph { 
+	"For more, see http://lilypond.org/doc/Documentation/notation/writing-rhythms#durations" 
+}
 
 %{ ***********************************
    * 
@@ -828,7 +822,7 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative g' {"
 			"    \\key g \major"
@@ -868,7 +862,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative g' {"
 			"    \\key g \major"
@@ -919,7 +913,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
@@ -965,7 +959,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
@@ -1010,7 +1004,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative g'"
 			"    \\key g \\major"
@@ -1061,7 +1055,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"	\\relative e'' {" 
 			"		\\key e \\minor"
@@ -1103,7 +1097,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"	\\relative e'' {" 
 			"		\\key e \\minor"
@@ -1140,7 +1134,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"	\\relative e'' {" 
 			"		\\key e \\minor"
@@ -1188,7 +1182,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"	\\relative c' {" 
 			"		\\time 3/4"
@@ -1244,7 +1238,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"\\relative g' {"
 			"    \\key g \\major"
 			"    \\clef treble"
@@ -1278,7 +1272,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"\\relative g' {"
 			"    \\key g \\major"
 			"    \\clef treble"
@@ -1325,7 +1319,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
@@ -1358,7 +1352,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
@@ -1405,7 +1399,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"	\\relative g' {"
 			"		\\key g \\major"
@@ -1456,7 +1450,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	\vspace #1
 	\column {
 		\hspace #8 \column \typewriter {
-			"\\version \"2.19.54\" "  
+			#versionNumber
 			"{"
 			"    \\relative c'"
 			"    {"
