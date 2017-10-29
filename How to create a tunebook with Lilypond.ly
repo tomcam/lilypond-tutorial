@@ -1,7 +1,6 @@
 \include "styles.ly"
 \include "print.ly"
-
-versionNumber = "\\version \"2.19.54\" "  
+\include "version.ly"
 
 
 %{ ***********************************
@@ -18,7 +17,7 @@ versionNumber = "\\version \"2.19.54\" "
    TODO
    * Lyrics
    * << and >>
-   * Standardize a way to express RULS
+   * Standardize a way to express URLS
    * Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms 
 
    INVESTIGATE
