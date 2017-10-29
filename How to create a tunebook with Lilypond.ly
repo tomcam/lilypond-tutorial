@@ -666,7 +666,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	}	
 }
 
-\markup \headerTwo { "Notes values are absolute and ignore key signature" }
+\markup \headerTwo { "Note values are absolute and ignore key signature" }
 
 \markup \normalParagraph { 
 	In the previous example you may have noticed something unexpected.
