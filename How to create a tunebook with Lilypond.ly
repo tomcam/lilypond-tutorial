@@ -9,67 +9,17 @@
 }
 
 % See "http://lilypond.org/doc/v2.18/Documentation/notation/the-paper-block"
-% See "http://lilypond.org/doc/v2.18/Documentation/notation/horizontal-spacing-paper-variables#paper-variables-for-widths-and-margins"
+% See "http://lilypond.note flatorg/doc/v2.18/Documentation/notation/horizontal-spacing-paper-variables#paper-variables-for-widths-and-margins"
 \paper {
  	top-margin = 0.5\in
 	right-margin = 2.0\in
 	ragged-right = ##t % Document the ##t thing! I tried #t, \#t, etc.
-%	line-width = 4.0\in
-}
-
-\paper {
-	% This had no effect:
-	% #(set-global-staff-size 30)
-
 	#(define fonts
 		(set-global-fonts
 			#:roman "Baskerville"
 		))
 }
 
-%{ ***********************************
-   FONT EXPERIMENTS
-
-			SANS
-			Nice, but doesn't go great with Baskerville as roman
-			#:sans "Verdana"
-			#:sans "AppleGothic"
-
-			To heavy & informal			
-			#:sans "DIN Alternate Bold"
-
-			ROMAN
-			Best so far. Font is a little light.
-			#:roman "Baskerville"
-
-			Good. Font is satisfyingly heavy.
-			#:roman "Marion"
-
-			Good but 80s-style narrow. Best size is \huge
-			#:roman "Bodoni 72"
-
-			Good. Slightly old-fashioned. A little too heavy.
-			#:roman "Georgia"
-
-			Pretty good.
-			#:roman "Charter"
-
-			Good. Slightly old-fashioned.
-			#:roman "Athelas"
-
-			Probably good. Small as tested.
-			#:roman "Times New Roman"
-
-			Shows up small. A bit old-fashioned.
-			#:roman "Didot"
-
-			Looks 1920s
-			#:roman "Cochin"
-
-			Nice but too narrow
-			#:roman "AppleMyungjo"
-
-   *********************************%}
 
 
 %{ ***********************************
@@ -89,23 +39,6 @@
    * Standardize a way to express URLS
    * Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms 
 
-   INVESTIGATE
-   
-   * Why does the # in this URL cause an error on compilation?
-
-	\markup \normalParagraph { 
-	For more, see http://lilypond.org/doc/v2.18/Documentation/notation/	writing-rhythms#durations
-	}
-
-   * Figure out why this doesn't word wrap:
-	\markup \normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
-
-    * How can I make columns of fixed width in text markup? 
-      I would like column 2 to start 50% in for all my 2-column examples." }
-
-    * Figure out how to do version declarations as macros.
-      Updating the markup would only need to be done once
-
    *********************************** 
 %}
 
@@ -118,65 +51,13 @@
    *********************************** 
 %}
 
-% \markup \override #'(font-size . 4)
-
-% Experimental macro
-
-% tellFileSave = "Press on Windows, or Command+S on Macintosh to save your file."  
-% \markup { \tellFileSave }
-
-% INCOMPLETE SUCCESS
-% tellFileSaveTwo = "Press " 
-% \markup { \tellFileSaveTwo \typewriter { Ctrl+C } }
-
-
-% FAIL
-% tellFileSaveTwo = { "Press " }
-% tellFileSaveTwo = { "Press " { \typewriter { Ctrl+C } } }
-
-%{
-#(define-markup-command (tellFileSave layout props) (markup?)
-  "Say how to save files on Windows, Mac, and Linux"
-  (interpret-markup layout props
-    (markup #:typeset "foo" )))
-%}
-
-#(define-markup-command (tellFileSave layout props) (markup?)
-  "Say how to save files on Windows, Mac, and Linux"
-  (interpret-markup layout props
-    (markup #:typewriter (#:simple "hello" #:simple) )))
-
-#(define-markup-command (tellFileSaveTwo layout props text) (markup?)
-  "Say how to save files on Windows, Mac, and Linux"
-  (interpret-markup-list layout props
-	(markup
- 		#:line
- 			(#:simple
-				"hello,"
-					#:typewriter
-						"everyone-how are you?"))
-	))
-
-
-
-
 
 \markup \headerOne  { "Writing tunebooks with Lilypond" }
-
-%\displayScheme \markup { hello, \typewriter { "everyone-how are you?"} }
-
-\displayScheme \markup { hello, \typewriter { "world"} }
-
-\markup {
-	\tellFileSaveTwo
-}
 
 \markup  {
 	\column {
 		{
-			\n { "The Lilypond documentation is pretty complete but a little light on end-to-end tutorial material." 
-"This book shows you how to use the subset of its features required to write songs in lead sheet style."
-"Normally it's a single melody line with lyrics." 
+			\n { The Lilypond documentation is pretty complete but a little light on end-to-end tutorial material.This book shows you how to use the subset of its features required to write songs in lead sheet style. Normally it's a single melody line with lyrics. 
 			}
 		}
 	}
@@ -203,7 +84,7 @@
 		\bulletParagraph { "Follow it with the notes of the score. The whole file should look like this:" }
 		\line { " " }
 		\typewriter {
-			"\\version \"2.19.54\"" 
+			#versionNumber 
          	"{"
          	"     c d e f"
          	"}"
@@ -240,6 +121,102 @@
 		}
 	}
 }
+
+%{ ***********************************
+   * 
+   * OUTPUT WINDOW
+   * 
+   ********************************* 
+%}
+
+\markup \headerTwo { The Output window }
+
+\markup \normalParagraph { 
+	Lilypond's output appears in a separate window. In normal operation
+	you'll see many, many lines looking something like this:
+}
+
+\markup {
+	\vspace #1
+}
+
+
+\markup \tiny \box \pad-markup #1.5 {
+	\column \typewriter {
+		\line { Processing `/Users/tom/songbook/American Dance 1850-1900.ly' } 
+		\line { Parsing... } 
+		\line { Interpreting music... } 
+		\line { Preprocessing graphical objects... } 
+		\line { Calculating line breaks... } 
+		\line { Drawing systems... } 
+		\line { \italic { etc...} } 
+	}
+
+}
+
+\markup \normalParagraph { 
+	If your source file contains no errors, the concluding lines look something like this:
+}
+
+\markup {
+	\vspace #1
+}
+
+\markup \tiny \box \pad-markup #1.5 {
+	\column \typewriter  {
+		\line { Layout output to `/var/folders/7k/2n4d6vn6k_mvr/T//lilypond-Ue4wmd'... } 
+		\line { Converting to `American Dance 1850-1900.pdf'...} 
+		\line { Deleting `/var/folders/7k/2n4d6vn6k_mvr/T//lilypond-Ue4wmd'... } 
+		\line { Success: compilation successfully completed } 
+	}
+
+}
+
+\markup \normalParagraph { 
+	If there's an error, for example, you forget a trailing
+\typewriter { "}" } in a score, a large number of messages like these will scroll past:
+}
+
+\markup {
+	\vspace #1
+}
+\markup \tiny \box \pad-markup #1.5 {
+	\column \typewriter  {
+		\line { Layout output to `/var/folders/7k/2n4d6vn6k_mvr/T//lilypond-Ue4wmd'... } 
+		\line { "'/Users/tom/songbook/American Dance 1850-1900.ly':206:1: error:" } 
+		\line { "markup outside of text script or \\lyricmode" }
+		\line { "'/Users/tom/songbook/American Dance 1850-1900.ly':228:1: error:" } 
+		\line { "Spurious \\line in \\score" } 
+		\line { "'/Users/tom/songbook/American Dance 1850-1900.ly':228:1: error: " }
+		\line { "markup outside of text script or \\lyricmode" }
+		\line { "\\markup '/Users/tom/songbook/American Dance 1850-1900.ly':1638:3:" }
+		\line { "error: syntax error, unexpected end of input, expecting '}'" }
+		\line { "Interpreting music..." }
+		\line { "Preprocessing graphical objects... " }
+		\line { "Calculating line breaks... " }
+		\line { "Drawing systems..." }
+		\line { "Finding the ideal number of pages..." }
+		\line { "Fitting music on 1 or 2 pages..." }
+		\line { "Drawing systems..." }
+		\line { "Layout output to `/var/folders/7k/2n4hyw3d6vn6k_mvr64mmk4h0000gp" }
+		\line { "/T//lilypond-01l3cQ'..." }
+		\line { "Converting to `American Dance 1850-1900.pdf'..." }
+		\line { "Deleting `/var/folders/7k/22n4d6vn6k_mvr/T//lilypond-Ue4wmd'..." }
+		\line { "fatal error: failed files: '/Users/tom/songbook/American Dance 1850-1900.ly" }
+		\line { "'/Users/tom/songbook/American Dance 1850-1900.ly" }
+	}
+
+}
+
+
+% ///
+\markup \normalParagraph { 
+	Running across such a giant list of problems looks intimidating, but
+	you will find that it's the result of a cascade of problems caused
+	by just one thing. Usually that one thing is the absence of a curly 
+	brace, parenthesis, or quote mark.
+}
+
 
 
 %{ ***********************************
@@ -285,12 +262,9 @@
 }
 
 \markup \normalParagraph { 
-			It's not just bass and treble. Lillypond has a huge variety of clefs available.
-			More common clefs include 
-			\typewriter { "tenor" },
-			\typewriter { "alto" }, and
-			\typewriter { "percussion" }, but you'll see a host of others at \typewriter { http://lilypond.org/doc/Documentation/notation/clef-styles}.
-		}
+	It's not just bass and treble. Lillypond has a huge variety of clefs available. More common clefs include 
+\typewriter { "tenor" }, \typewriter { "alto" }, and \typewriter { "percussion" }, but you'll see a host of others at http://lilypond.org/doc/Documentation/notation/clef-styles
+	}
 
 
 %{ ***********************************
@@ -340,7 +314,7 @@
 It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }. 
 }
 
-\markup \headerThree { Each \typewriter { "'" } raises the pitch an octave }
+\markup \headerThree { Raise relative pitch one octave per \typewriter { "'" } }
 
 \markup \normalParagraph { 
 			To go up an octave, try it again but with double  \typewriter { "''" } marks like this,
@@ -375,7 +349,8 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 }
 
 
-\markup \headerThree { Each \typewriter { "," } lowers the pitch an octave }
+\markup \headerThree { Lower relative pitch one octave per \typewriter { "," } }
+
 
 \markup \normalParagraph { 
 			To go down an octave, append a comma \typewriter { "," } like this:
@@ -421,13 +396,11 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 			"    \\relative c {"
 			"         c d e f"
 			"    }"
-			"}"
-			"{"
+			" "
 			"    \\relative c, {"
 			"         c d e f"
+			" "
 			"    }"
-			"}"
-			"{"
 			"    \\relative c' {"
 			"         c d e f"
 			"    }"
@@ -443,9 +416,13 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 				\relative c { 
 					c d e f 
 				}
+			
+			
 				\relative c, { 
 					c d e f 
 				}
+			
+			
 				\relative c' { 
 					c d e f 
 				}
@@ -468,13 +445,12 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
    ********************************* 
 %}
 
-\markup \headerTwo { "Comments--adding notes to yourself in the score" }
+\markup \headerTwo { "Comments: adding notes to yourself Lilypad source" }
 
 \markup \normalParagraph { 
-			Suppose you want to include a message to yourself in the score but you
-			don't want it to appear in the final output. You can do that with comments.
+			Suppose you want to include a message to yourself in the score but you don't want it to appear in the final output. You can do that with comments.
 			Single-line comments start with a \typewriter { "%" }.
-			Copy this, then compile it. The comments do not appear in the final output. That's a feature, not a bug.
+			Copy this, then compile it. The comments do not appear in the final output. That's a feature, not a bug. Comments that go to your Lilypond source, stay in your Lilypond source. They won't be seen in the printed score:
 		}
 
 \markup {
@@ -639,7 +615,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 			#versionNumber
 			"{"
 			"    \\relative c' {"
-			"         c d e f | g a b c"
+			"         c d | e f g a b c"
 			"    }"
 			"}"
 		}
@@ -651,7 +627,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 		\score {
 			{ 
 				\relative c' { 
-					c d e f | g a b c
+					c d | e f g a b c
 				}
 			}
 		}
@@ -759,13 +735,13 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	Make sure there is no space after the note letter.
 }
 
-\markup \headerThree { Append \typewriter { "es" } to make a note flat }
+\markup \headerThree { To make a note flat, append \typewriter { "es" } }
 
 \markup \normalParagraph { 
 	Append \typewriter { "es" } to a note name to give it a flat sign. 
 }
 
-\markup \headerThree { Append \typewriter { "is" } to make a note sharp }
+\markup \headerThree { To make a note shart, append \typewriter { "is" } }
 
 \markup \normalParagraph { 
 	Append \typewriter { "is" } to a note name to give it a sharp sign.
@@ -1243,7 +1219,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 			"	\\relative e'' {" 
 			"		\\key e \\minor"
 			"		\\time 2/4"
-			"		e8 e fis16 g8"
+			"		e8 e e16 fis16 g8"
 			"	}"
 			"}"
 		}
