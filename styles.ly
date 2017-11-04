@@ -37,18 +37,18 @@ bulletChar = \markup { \char ##x2022 }
    *********************************** 
 %}
 
-#(define-markup-list-command (bp layout props text) 
+#(define-markup-list-command (n layout props text) 
 	(markup-list?)
-	"Paragraph starting with a bullet-indicates action"
+	"Normal explanatory paragraph"
  	(interpret-markup-list layout props
 		#{
-			\markuplist {
+			\markuplist \huge {
 				\concat {
+					\vspace #1.5
 					\wordwrap { #text }
 				}
 			}
   		#}))
-
 
 %{ ***********************************
    * 
@@ -115,7 +115,7 @@ bulletChar = \markup { \char ##x2022 }
 	"Paragraph starting with a bullet-indicates action"
  	(interpret-markup-list layout props
 		#{
-			\markuplist {
+			\markuplist  \huge {
 				\concat {
 					\vspace #1.5
 					\bulletChar \hspace #1
@@ -135,7 +135,7 @@ bulletChar = \markup { \char ##x2022 }
 	"Normal explanatory paragraph"
  	(interpret-markup-list layout props
 		#{
-			\markuplist {
+			\markuplist  \huge {
 				\concat {
 					\vspace #1.5
 					\wordwrap { #text }
