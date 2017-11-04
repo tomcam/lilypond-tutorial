@@ -16,6 +16,60 @@
 %	line-width = 4.0\in
 }
 
+\paper {
+	% This had no effect:
+	% #(set-global-staff-size 30)
+
+	#(define fonts
+		(set-global-fonts
+			#:roman "Baskerville"
+		))
+}
+
+%{ ***********************************
+   FONT EXPERIMENTS
+
+			SANS
+			Nice, but doesn't go great with Baskerville as roman
+			#:sans "Verdana"
+			#:sans "AppleGothic"
+
+			To heavy & informal			
+			#:sans "DIN Alternate Bold"
+
+			ROMAN
+			Best so far. Font is a little light.
+			#:roman "Baskerville"
+
+			Good. Font is satisfyingly heavy.
+			#:roman "Marion"
+
+			Good but 80s-style narrow. Best size is \huge
+			#:roman "Bodoni 72"
+
+			Good. Slightly old-fashioned. A little too heavy.
+			#:roman "Georgia"
+
+			Pretty good.
+			#:roman "Charter"
+
+			Good. Slightly old-fashioned.
+			#:roman "Athelas"
+
+			Probably good. Small as tested.
+			#:roman "Times New Roman"
+
+			Shows up small. A bit old-fashioned.
+			#:roman "Didot"
+
+			Looks 1920s
+			#:roman "Cochin"
+
+			Nice but too narrow
+			#:roman "AppleMyungjo"
+
+   *********************************%}
+
 
 %{ ***********************************
    CONVENTIONS
@@ -63,13 +117,14 @@
    *********************************** 
 %}
 
+% \markup \override #'(font-size . 4)
 
 \markup \headerOne  { "Writing tunebooks with Lilypond" }
 
-\markup {
+\markup  {
 	\column {
-		\override #'(line-width . 10) {
-			\bp { "The Lilypond documentation is pretty complete but a little light on end-to-end tutorial material." 
+		{
+			\n { "The Lilypond documentation is pretty complete but a little light on end-to-end tutorial material." 
 "This book shows you how to use the subset of its features required to write songs in lead sheet style."
 "Normally it's a single melody line with lyrics." 
 			}
