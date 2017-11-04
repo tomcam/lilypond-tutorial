@@ -161,8 +161,12 @@
 		\headerTwo { "Save your file" } 
 		\bulletParagraph { "From the" \bold { File } "menu, choose" \bold Save. }
 		\headerTwo { "Compile/typeset your file" } 
-		\normalParagraph { "Now compile it. Compiling, also called typesetting, converts the code you wrote into beautifully engraved sheet music." }
-		\bulletParagraph { "From the" \bold { Compile } "menu, choose" \bold Typeset or press Command+R. }
+
+		\normalParagraph { Now compile your music file.
+			\italic Compiling, also called typesetting, 
+			converts the code you've written into beautifully engraved music. }
+
+		\bulletParagraph { "From the" \bold { Compile } "menu, choose" \bold Typeset or press Command+R. (Save your file if you haven't already.) }
 		\normalParagraph { "Results:" }
 	}
 }
@@ -997,7 +1001,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 		\score {
 			{ 
 				\relative c' { 
-					c4. d8. e4 f
+					c4. d8 e4 f
 				}
 			}
 		}
@@ -1020,7 +1024,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 \markup \headerTwo { "Grace notes" }
 \markup \normalParagraph { 
 			To add grace notes (which aren't included in the note count), use \typewriter { "\\grace" } followed by the grace note.
-			In this case the \typewriter { "\\grace a8" } isn't applied to the measure count. 
+			In this case the \typewriter { "\\grace g16" } isn't applied to the measure count. 
 		}
 
 \markup {
@@ -1029,9 +1033,9 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 		\hspace #8 \column \typewriter {
 			#versionNumber
 			"{"
-			"    \\relative c'"
+			"    \\relative a'"
 			"    {"
-			"         c d e f"
+			"         a4 g f \\grace g16 f4"
 			"    }"
 			"}"
 		}
@@ -1042,8 +1046,8 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 		\line { " " }
 		\score {
 			{ 
-				\relative c' { 
-					c d e f 
+				\relative a' { 
+					a4 g f \grace g16 f4 
 				}
 			}
 		}
