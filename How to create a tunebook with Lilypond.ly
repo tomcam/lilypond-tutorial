@@ -741,7 +741,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	Append \typewriter { "es" } to a note name to give it a flat sign. 
 }
 
-\markup \headerThree { To make a note shart, append \typewriter { "is" } }
+\markup \headerThree { To make a note sharp, append \typewriter { "is" } }
 
 \markup \normalParagraph { 
 	Append \typewriter { "is" } to a note name to give it a sharp sign.
