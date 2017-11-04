@@ -1,6 +1,20 @@
 \include "styles.ly"
-\include "print.ly"
 \include "version.ly"
+
+% Layout block is score-specific layout settings
+\layout {
+	line-width = 6.0\in
+	right-margin = 4.0\in
+}
+
+% See "http://lilypond.org/doc/v2.18/Documentation/notation/the-paper-block"
+% See "http://lilypond.org/doc/v2.18/Documentation/notation/horizontal-spacing-paper-variables#paper-variables-for-widths-and-margins"
+\paper {
+ 	top-margin = 0.5\in
+	right-margin = 2.0\in
+	ragged-right = ##t % Document the ##t thing! I tried #t, \#t, etc.
+%	line-width = 4.0\in
+}
 
 
 %{ ***********************************
