@@ -1054,10 +1054,6 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 	}	
 }
 
-\markup \normalParagraph { 
-			Concluding graf
-		}
-
 
 %{ ***********************************
    * 
@@ -1104,10 +1100,6 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 		}
 	}	
 }
-
-\markup \normalParagraph { 
-			Concluding graf
-		}
 
 
 %{ ***********************************
@@ -1500,7 +1492,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 }
 
 \markup \normalParagraph { 
-	Concluding graf
+	See http://lilypond.org/doc/v2.19/Documentation/notation/list-of-articulations#fermata-scripts for more fermata options.
 }
 
 
