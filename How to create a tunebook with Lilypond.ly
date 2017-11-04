@@ -143,9 +143,9 @@
 		\bulletParagraph { "From the" \bold { File } "menu, choose" \bold New. }
 		\normalParagraph { "A simple notepad appears." }
 		\normalParagraph { 
-			{ "The first line you should write is" }
-			\typewriter {"\\version"} 
-			{" followed by whatever the current version of Lilypad is in quotes. For example:"}
+			The first line you should write is
+			\typewriter "\\version" 
+			followed by whatever the current version of Lilypad is in quotes. For example:
 		}
 		\normalParagraph { \typewriter {"\\version \"2.19.54\"" }}
 		\normalParagraph { "If you don't know which version you're running, here's out to find out:" }
