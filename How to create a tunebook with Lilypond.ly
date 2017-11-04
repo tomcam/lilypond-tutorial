@@ -1,6 +1,7 @@
 \include "styles.ly"
 \include "version.ly"
 
+
 % Layout block is score-specific layout settings
 \layout {
 	line-width = 6.0\in
@@ -119,7 +120,56 @@
 
 % \markup \override #'(font-size . 4)
 
+% Experimental macro
+
+% tellFileSave = "Press on Windows, or Command+S on Macintosh to save your file."  
+% \markup { \tellFileSave }
+
+% INCOMPLETE SUCCESS
+% tellFileSaveTwo = "Press " 
+% \markup { \tellFileSaveTwo \typewriter { Ctrl+C } }
+
+
+% FAIL
+% tellFileSaveTwo = { "Press " }
+% tellFileSaveTwo = { "Press " { \typewriter { Ctrl+C } } }
+
+%{
+#(define-markup-command (tellFileSave layout props) (markup?)
+  "Say how to save files on Windows, Mac, and Linux"
+  (interpret-markup layout props
+    (markup #:typeset "foo" )))
+%}
+
+#(define-markup-command (tellFileSave layout props) (markup?)
+  "Say how to save files on Windows, Mac, and Linux"
+  (interpret-markup layout props
+    (markup #:typewriter (#:simple "hello" #:simple) )))
+
+#(define-markup-command (tellFileSaveTwo layout props text) (markup?)
+  "Say how to save files on Windows, Mac, and Linux"
+  (interpret-markup-list layout props
+	(markup
+ 		#:line
+ 			(#:simple
+				"hello,"
+					#:typewriter
+						"everyone-how are you?"))
+	))
+
+
+
+
+
 \markup \headerOne  { "Writing tunebooks with Lilypond" }
+
+%\displayScheme \markup { hello, \typewriter { "everyone-how are you?"} }
+
+\displayScheme \markup { hello, \typewriter { "world"} }
+
+\markup {
+	\tellFileSaveTwo
+}
 
 \markup  {
 	\column {
@@ -540,6 +590,76 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	}	
 }
 
+\markup \normalParagraph { 
+	For clarity these examples separate the
+	measures visually, but it's not necessary: 
+}
+
+
+\markup {
+	\vspace #1
+	\column {
+		\hspace #8 \column \typewriter {
+			#versionNumber
+			"{"
+			"    \\relative c' {"
+			"         c d e f g a b c"
+			"    }"
+			"}"
+		}
+	}
+	\column {
+		\line { " " }
+		\line { " " }
+		\line { " " }
+		\score {
+			{ 
+				\relative c' { 
+					c d e f g a b c
+				}
+			}
+		}
+	}	
+}
+
+\markup \normalParagraph { 
+	You can add the pipe character (\typewriter "|")
+	into your markup as a visual aid to remind you 
+	where measure breaks occur. If you put it in the
+	wrong place, you'll get a warning. Lilypond
+	won't put a measure line where it wouldn't fit the
+	time signature: 
+}
+
+
+\markup {
+	\vspace #1
+	\column {
+		\hspace #8 \column \typewriter {
+			#versionNumber
+			"{"
+			"    \\relative c' {"
+			"         c d e f | g a b c"
+			"    }"
+			"}"
+		}
+	}
+	\column {
+		\line { " " }
+		\line { " " }
+		\line { " " }
+		\score {
+			{ 
+				\relative c' { 
+					c d e f | g a b c
+				}
+			}
+		}
+	}	
+}
+
+
+
 %{ ***********************************
    * 
    * TIME SIGNATURE
@@ -748,10 +868,9 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 			"{"
 			"    \\relative g'"
 			"    \\key g \\major"
-			"    {"
-			"         g f e d   % WRONG for the key of G!"
-			"         g fis e d"
-			"    }"
+			"        % WRONG for the key of G!"
+			"        g f e d"
+			"        g fis e d"
 			"}"
 		}
 	}
