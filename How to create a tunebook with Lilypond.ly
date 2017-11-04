@@ -1492,7 +1492,7 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 }
 
 \markup \normalParagraph { 
-	See http://lilypond.org/doc/v2.19/Documentation/notation/list-of-articulations#fermata-scripts for more fermata options.
+	See "http://lilypond.org/doc/v2.19/Documentation/notation/list-of-articulations#fermata-scripts" for more fermata options.
 }
 
 
