@@ -89,8 +89,8 @@ bulletChar = \markup { \char ##x2022 }
 		#{
 			\markup {
 				\vspace #2
-				\fontsize #3
-				\line \sans { #text }
+				\fontsize #1
+				\line \bold \sans { #text }
 			}
   	#}))
 
