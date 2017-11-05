@@ -2,6 +2,10 @@
 \include "version.ly"
 
 
+\include "styles.ly"
+\include "version.ly"
+
+
 % Layout block is score-specific layout settings
 \layout {
 	line-width = 6.0\in
@@ -35,9 +39,11 @@
 
    TODO
    * Lyrics
+   * Screen shot of finished product for intro
    * << and >>
    * Standardize a way to express URLS
    * Metronome marks. See http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms 
+   * Table of contents
 
    *********************************** 
 %}
@@ -73,13 +79,16 @@
 
 		\bulletParagraph { "From the" \bold { File } "menu, choose" \bold New. }
 		\normalParagraph { "A simple notepad appears." }
-		\normalParagraph { 
-			The first line you should write is
+		\bulletParagraph { The first line you should write is
 			\typewriter "\\version" 
-			followed by whatever the current version of Lilypad is in quotes. For example:
+			followed by whatever the current version of Lilypad is in quotes. For example: }
+		\line { " " }
+		\typewriter {
+			#versionNumber 
 		}
-		\normalParagraph { \typewriter {"\\version \"2.19.54\"" }}
-		\normalParagraph { "If you don't know which version you're running, here's out to find out:" }
+
+
+		\normalParagraph { "If you don't know which version you're running, here's how to find out:" }
 		\bulletParagraph { "From the" \bold { LilyPond } "menu, choose" \bold About. }
 		\bulletParagraph { "Follow it with the notes of the score. The whole file should look like this:" }
 		\line { " " }
@@ -162,6 +171,7 @@
 	\vspace #1
 }
 
+
 \markup \tiny \box \pad-markup #1.5 {
 	\column \typewriter  {
 		\line { Layout output to `/var/folders/7k/2n4d6vn6k_mvr/T//lilypond-Ue4wmd'... } 
@@ -176,6 +186,7 @@
 	If there's an error, for example, you forget a trailing
 \typewriter { "}" } in a score, a large number of messages like these will scroll past:
 }
+
 
 \markup {
 	\vspace #1
@@ -208,17 +219,102 @@
 
 }
 
-
-% ///
 \markup \normalParagraph { 
-	Running across such a giant list of problems looks intimidating, but
-	you will find that it's the result of a cascade of problems caused
+	Running across such a giant list of error messages looks intimidating. 	You will find that it's invariably cascade of problems caused
 	by just one thing. Usually that one thing is the absence of a curly 
 	brace, parenthesis, or quote mark.
 }
 
+% ///
+%{ ***********************************
+   * 
+   * Formatting
+   * 
+   ********************************* 
+%}
+
+\markup \normalParagraph { 
+	In fact, let's take another look at the way your score
+	is formatted to clarify how it's formatted.
+}
+
+\markup \normalParagraph { 
+	Lilypond thinks of things in lists.
+	Usually those lists are in between these 
+	things, which are sometimes called curly braces: 
+	\typewriter { "{ }" }. The first score you did, which consisted
+	of a list of four notes between the curly braces, looked like this:
+}
+
+\markup {
+	\column { 		 
+	\vspace #1
+		\typewriter {
+			#versionNumber
+         	"{"
+            "    c d e f "
+ 			"}"
+		}
+	}
+}
 
 
+\markup \normalParagraph { 
+	It could also be written like this:
+}
+
+\markup {
+	\vspace #2
+	\column {
+		\typewriter {
+			#versionNumber
+         	"{  c d e f }"
+		}
+	}
+}
+
+\markup \normalParagraph { 
+	Or:
+}
+
+\markup {
+	\vspace #2
+	\column {
+		\typewriter {
+			#versionNumber
+			"% You could... but don't"
+         	"{"
+         	"  c d e f }"
+		}
+	}
+}
+
+
+
+\markup \normalParagraph { 
+	A list just needs
+	its delimiters, such as curly braces, and the items in
+	the list, separated by spaces. The number of spaces between
+	items in the list don't matter. And a carriage return (blank line)
+	functions identically to a space. So does a tab character.
+}
+
+\markup \headerThree { Always write the opening and closing list characters first }
+
+\markup \normalParagraph { 
+	The most important thing to remember about writing any kind
+	of list in Lilypond is to make sure you write the opening
+	and closing characters (for example, \typewriter { "{" }
+	and \typewriter { "}" }) before you write anything else, 
+	because the most common errors are when you forget to 
+	write a closing list delimiter or quote mark.
+}
+
+
+
+
+
+% ///
 %{ ***********************************
    * 
    * CHANGING THE CLEF
@@ -228,10 +324,9 @@
 
 \markup \headerTwo { "Changing the clef" }
 \markup \normalParagraph { 
-			That's probably  not how you want these notes represented.
-			The clef is assumed to be treble. You can specify the clef easily
-			using \typewriter { "\\clef" }.
-		}
+	The clef is assumed to be treble. You can specify the clef easily
+	using \typewriter { "\\clef" }.
+}
 
 \markup {
 	\vspace #1
@@ -265,7 +360,6 @@
 	It's not just bass and treble. Lillypond has a huge variety of clefs available. More common clefs include 
 \typewriter { "tenor" }, \typewriter { "alto" }, and \typewriter { "percussion" }, but you'll see a host of others at http://lilypond.org/doc/Documentation/notation/clef-styles
 	}
-
 
 %{ ***********************************
    * 
@@ -434,8 +528,9 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 
 
 \markup \normalParagraph { 
-			See http://lilypond.org/doc/Documentation/notation/writing-pitches for more details.
-		}
+	See http://lilypond.org/doc/Documentation/notation/writing-pitches for more details.
+}
+
 
 
 %{ ***********************************
@@ -445,7 +540,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
    ********************************* 
 %}
 
-\markup \headerTwo { "Comments: adding notes to yourself Lilypad source" }
+\markup \headerTwo { "Comments: adding notes to yourself in the Lilypad source" }
 
 \markup \normalParagraph { 
 			Suppose you want to include a message to yourself in the score but you don't want it to appear in the final output. You can do that with comments.
@@ -521,8 +616,6 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 
 
 
-
-
 %{ ***********************************
    * 
    * MEASURES
@@ -556,12 +649,10 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 		\line { " " }
 		\line { " " }
 		\score {
-			{ 
 				\relative c' { 
 					c d e f 
 					g a b c
 				}
-			}
 		}
 	}	
 }
@@ -602,9 +693,10 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	You can add the pipe character (\typewriter "|")
 	into your markup as a visual aid to remind you 
 	where measure breaks occur. If you put it in the
-	wrong place, you'll get a warning. Lilypond
-	won't put a measure line where it wouldn't fit the
-	time signature: 
+	wrong place, you'll get a warning that says something
+	like \typewriter { warning: barcheck failed at: 1/2 c d  | e f g a b c }.
+    Lilypond refuses to place a measure line where it wouldn't fit the
+	score: 
 }
 
 
@@ -615,6 +707,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 			#versionNumber
 			"{"
 			"    \\relative c' {"
+			"         % Causes warning message"
 			"         c d | e f g a b c"
 			"    }"
 			"}"
@@ -627,13 +720,12 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 		\score {
 			{ 
 				\relative c' { 
-					c d | e f g a b c
+					c d e f g a b c
 				}
 			}
 		}
 	}	
 }
-
 
 
 %{ ***********************************
@@ -647,7 +739,7 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 \markup \headerTwo { "Changing the time signature" }
 
 \markup \normalParagraph { 
-			LilyPond defaults to 4 beats per measure but of course that's easily changed using \typewriter { "\\time:" } 
+			LilyPond defaults to 4 beats per measure but of course that's easily changed using \typewriter { time }:
 		}
 
 
@@ -682,9 +774,8 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 }
 
 \markup \normalParagraph { 
-			You can change time signatures at any point: 
-		}
-
+	You can change time signatures at any point. 
+}
 
 \markup {
 	\vspace #1
@@ -778,9 +869,6 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 	}	
 }
 
-\markup \normalParagraph { 
-			TODO: More about this. Explain lists and why the braces are required.
-		}
 
 %{ ***********************************
    * 
@@ -793,9 +881,8 @@ It could be any note, like \typewriter { "g'" }  or \typewriter { "d'" }.
 \markup \headerTwo { "Changing the key signature" }
 
 \markup \normalParagraph { 
-			Define the key signature using \typewriter { "\\key"}, followed by its letter, followed by \typewriter { "\\major" }
-			or \typewriter { "\\minor" }.
-		}
+	Define the key signature using \typewriter { "\\key"}, followed by its letter, followed by \typewriter { "\\major" } or \typewriter { "\\minor" }.
+}
 
 \markup {
 	\vspace #1
@@ -868,16 +955,13 @@ because of the key signature. \bold { Lilypond requires that no matter what the 
 }
 
 \markup \normalParagraph { 
-			Intuitively, you would think that because the key signature is G major,
-			the first notation example \typewriter { g f e d } would be sufficient,
-			that LilyPond would understand from context that the sharp sign is
-			implied. Unfortunately that's not the case, so no matter what
-			key you're in you need to write out each note in full, as if it
-			were in the key of C.
-		}
-
-
-
+	Intuitively, you would think that because the key signature is G major,
+	the first notation example \typewriter { g f e d } would be sufficient,
+	that LilyPond would understand from context that the sharp sign is
+	implied. Unfortunately that's not the case, so no matter what
+	key you're in you need to write out each note in full, as if it
+	were in the key of C.
+}
 
 
 
@@ -1637,6 +1721,12 @@ use \typewriter { "\\tuplet 5/2" } as shown next.
 }
 
 %}
+
+
+
+
+
+
 
 
 
