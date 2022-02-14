@@ -8,11 +8,11 @@
 % alone on the page.
 
 <<
-  \chords {
-  d:m  c g a:dim7 
-  }
- 	\new FretBoards {
-    	\chordmode {
+	\chords {
+		d:m  c g a:dim7
+	}
+	\new FretBoards {
+    		\chordmode {
 			% Custom fret diagram
 			d
  			\override FretBoard.fret-diagram-terse = #"x;x;o;2-1;3-2;2-3;"
@@ -28,8 +28,8 @@
 			% Predefined fret diagram
 			a:dim7
 			
-    	}      
+    		}      
 	  
-    }
+	  }
   
 >>
