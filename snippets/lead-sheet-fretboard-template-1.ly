@@ -1,5 +1,8 @@
 % Lead sheet with single melody line. Includes default guitar fretboard diagrams
 % as supplied by Lilypond
+% See also:
+%  https://github.com/tomcam/lilypond-tutorial/blob/master/snippets/lead-sheet-in-progress-1.ly
+%  http://lilybin.com/2x4ocz/1
 \version "2.18.2"
 \include "predefined-guitar-fretboards.ly"
 
