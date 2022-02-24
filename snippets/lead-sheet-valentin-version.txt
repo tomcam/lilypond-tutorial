@@ -1,0 +1,81 @@
+  Explanation by Valentin of lead-sheet-valentin-version.ly
+  
+  We are using here that we can "register" scores to the current book(part) from
+scheme using the function (add-score score) (similarly we can use (add-text
+markup) to add a stand-alone markup to the book). This allows us to construct
+scores using scheme, which makes automated handling of thing much easier.
+
+So what we want to have is a function that creates a score using standard
+elements, that is, chords, a voice, and lyrics. At the same time we want to be
+flexible enough to leave out some of these elements.
+
+So we define a void-function (that is a scheme function that returns nothing)
+that takes:
+→ The title of the score
+→ Optionally the composer of the score
+→ A piece of music for the voice or #f
+→ A piece of music for the chords or #f
+→ A piece of lyrics (which is also music) or a list of such (to allow stanzas)
+     or #f
+
+The syntax here is
+myfunction =
+#(define-void-function (arg1 arg2 ...)
+    (type-check-arg1 type-check-arg1 ...)
+    function-body)
+
+where the type-checks are predicates (functions returning truth values) or
+(predicate default) for optional arguments with default value.
+
+We then use let* which allows us to locally bind some variables (similar to
+let, but let* lets each binding access the previous bindings). The syntax here
+is
+
+(let* ((var1 value1) (var2 value2) ...) body)
+
+So we define CN, FB, VC, LY as shorthands for the ChordNames, FretBoards, Voice
+and Lyrics. If one of these is set to #f we use empty-music, which is music
+containing nothing, else we create the contexts with the specified music.
+
+As lyrics might be a list of lyrics we have to handle both of these things,
+which is done by either doing something to the lyrics or by doing to the whole
+list (which is the (map function list) expression). We also need to handle the
+presence of the Voice here. If for some reason voice is set to #f we should
+not align the lyrics to anything and rely on the lyrics themselves being
+rhythmicised. To make further handling easier we make sure that LY is list
+even when lyrics isn’t. [WHICH BY THE WAY I FORGOT IF lyrics IS #f, THIS IS
+FIXED IN THE APPENDED FILE!]
+
+So we get a big expression basically just checking:
+→ Is lyrics #f? If so use (in the fixed version a list of) empty music.
+→ Is voice #f? If so do not use \lyricsto "auto"
+→ Is lyrics music or a list? If so we use map to create Lyrics for each member
+of the list. If not we create a list containing a single Lyrics context.
+
+Next we basically want to put all of these contexts in a << ... >> construct.
+This is known as "simultaneous music" and is internally stored as
+(make-music 'SimulataneousMusic 'elements A-LIST-OF-MUSIC)
+where the list of music contains the content of ... . This means we simply
+have to construct this list and then do the above call with this list.
+
+I won’t go into detail what a LISP list is, if you are interested please ask
+or checkout what I wrote to Simon earlier this thread. But basically if L is a
+list then `(,a ,b ,c . ,L) will be L with a, b and c prepended. As Jean
+pointed out this can be done by (cons* a b c L).
+
+So we do a
+(cons* CN FB VC LY)
+to create a list of all the contexts we created so far (and maybe some empty
+music, but we do not really have to care about these).
+
+Next we create a score with the specified header informations and the
+previously created simultaneous music. Using #{ ... #} allows us to parse the
+content between as Lilypond syntax instead of scheme syntax. So we do
+#{ \score { ... } #}
+and create the score just like we would in Lilypond syntax.
+
+Then the last thing we do is use add-score to add this newly created score to
+the current book.
+
+Cheers,
+Valentin
